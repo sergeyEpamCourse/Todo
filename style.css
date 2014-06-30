@@ -1,0 +1,104 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#textEditor {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#statusButton {
+	background-color: rgb(216,91,29);
+}
+
+#enter {
+	margin: 0px auto;
+	cursor: pointer;
+	font-size: 40px;
+	background-color: rgb(255,183,116);
+}
+
+#enter:hover {
+	background-color:black;
+	color:white;
+}
+
+.navButton:hover {
+	cursor: pointer;
+	background-color:black !important;
+	color:white !important;
+}
+
+#allButton {
+	background-color: rgb(255,80,252);
+}
+
+#activeButton {
+	background-color: rgb(173, 255, 170);
+}
+
+#completedButton {
+	background-color: rgb(255,135,159);
+}
+
+.todo_text{
+	min-width:20px;
+	min-height:15px;
+	background-color: rgb(255,251,200);
+	padding: 2px 4px;
+	margin:2px;
+}
+
+.close {
+	cursor: pointer;
+	background-color: rgb(218,162,158);
+	margin:2px;
+	border: 2px white solid;
+}
+
+.close:hover{
+	background-color:black;
+	color:white;
+}
+
+.todos {
+	border-bottom: 2px black solid;
+	padding: 3px 6px;
+}
+
+.completedButton{
+	right:0;
+	cursor: pointer;
+	background-color: rgb(255,190,124);
+	margin:2px;
+	border: 2px white solid;
+}
+
+.completedButton:hover{
+	background-color:black;
+	color:white;
+}
+
+#todo_list > .indicator {
+	display: block;
+	width:20px;
+	height: 20px;
+}
+
+div[completed="yes"] {
+	background-color: rgb(255,135,159);
+}
+
+div[completed="yes"]:after {
+	content: " : YES";
+}
+
+div[completed="no"] {
+	background-color: rgb(173, 255, 170);
+}
+
+div[completed="no"]:after {
+	content: " : NO";
+}
