@@ -22,7 +22,7 @@ body {
 	cursor: pointer;
 	font-size: 40px;
 	background-color: rgb(255,183,116);
-	border: 2px rgb(255,99,85) solid;
+	border: 4px rgb(255,99,85) solid;
 }
 
 #enter:hover {
