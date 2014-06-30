@@ -65,7 +65,7 @@
 		function display(storageName) {
 			displayTodoList("#todo_list", storageName);
 			setCloseEvent(storageName, ".close");
-			setCompletedButton(storageName, ".completedButton");
+			setCompletedButtonEvent(storageName, ".completedButton");
 			show[nowDisplayTab]();
 		}
 		
@@ -125,7 +125,7 @@
 			});
 		}
 		
-		function setCompletedButton(storageName, elementGroup) {
+		function setCompletedButtonEvent(storageName, elementGroup) {
 			$(elementGroup).click(function(event) {
 				var that = event.currentTarget;
 				var index = getTodoIndex(that);
