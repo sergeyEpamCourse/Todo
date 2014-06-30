@@ -9,28 +9,30 @@
   </head>
 
   <body>
-	<div id="add_todo">
-		<div class="todo_content">
-			<input type="text" id="textEditor" style="width:100%;" autofocus value="Enter text here."/>
+	<div id="todoApp">
+		<div id="add_todo">
+			<div class="todo_content">
+				<input type="text" id="textEditor" style="width:100%;" autofocus value="Enter text here."/>
 
-			<div id="enter">
-				<span id="enterName">Enter</span>
+				<div id="enter">
+					<span id="enterName">Enter</span>
+				</div>
 			</div>
 		</div>
+		<div id="statusButton">
+			<span class="navButton" id="allButton">
+				All
+			</span>
+			<span class="navButton" id="activeButton">
+				Active
+			</span>
+			<span class="navButton" id="completedButton">
+				Completed
+			</span>
+		</div>
+		<ul id="todo_list">
+		</ul>
 	</div>
-	<div id="statusButton">
-		<span class="navButton" id="allButton">
-			All
-		</span>
-		<span class="navButton" id="activeButton">
-			Active
-		</span>
-		<span class="navButton" id="completedButton">
-			Completed
-		</span>
-	</div>
-	<ul id="todo_list">
-	</ul>
   </body>
   
 </html>

@@ -1,6 +1,12 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-color: grey;
+}
+
+#todoApp {
+	margin: 0 auto;
+	max-width:500px;
 }
 
 #textEditor {
