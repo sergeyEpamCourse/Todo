@@ -89,7 +89,7 @@
 					text = "Empty todo.";
 				var $todoText = $("<div />", {
 					'class' : "todo_text",
-				}).html(text);
+				}).text(todoArr[i].text);
 				var $closeButton = $("<span />", {
 					'class' : "close",
 				}).text("Close");
@@ -140,7 +140,7 @@
 		
 		//on enter
 		$("#enter").click(function(event) {
-			addTodoToStorage("#todo_text", 'todos');
+			addTodoToStorage("#textEditor", 'todos');
 			display('todos');
 
 			event.stopImmediatePropagation();
