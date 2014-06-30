@@ -87,7 +87,7 @@
 				var text = todoArr[i].text;
 				if (text === "")
 					text = "Empty todo.";
-				var $todoText = $("<pre />", {
+				var $todoText = $("<div />", {
 					'class' : "todo_text",
 				}).text(text);
 				var $closeButton = $("<span />", {

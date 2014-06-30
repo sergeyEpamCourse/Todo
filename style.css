@@ -54,6 +54,7 @@ body {
 	background-color: rgb(255,251,200);
 	padding: 2px 4px;
 	margin:2px;
+	word-wrap: break-word;
 }
 
 .close {
