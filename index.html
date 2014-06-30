@@ -4,13 +4,15 @@
   <head>
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="underscore-min.js"></script>
 	<script src="script.js"></script>
   </head>
 
   <body>
 	<div id="add_todo">
 		<div class="todo_content">
-			<textarea name="text" id="textEditor" style="width:100%;" autofocus>Enter text here.</textarea>
+			<input type="text" id="textEditor" style="width:100%;" autofocus value="Enter text here."/>
+
 			<div id="enter">
 				<span id="enterName">Enter</span>
 			</div>
@@ -27,8 +29,8 @@
 			Completed
 		</span>
 	</div>
-	<div id="todo_list">
-	</div>
+	<ul id="todo_list">
+	</ul>
   </body>
   
 </html>

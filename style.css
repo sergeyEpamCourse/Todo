@@ -93,18 +93,24 @@ body {
 	height: 20px;
 }
 
-div[completed="yes"] {
+ul {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+li[completed="yes"] {
 	background-color: rgb(255,135,159);
 }
 
-div[completed="yes"]:after {
+li[completed="yes"]:after {
 	content: " : YES";
 }
 
-div[completed="no"] {
+li[completed="no"] {
 	background-color: rgb(173, 255, 170);
 }
 
-div[completed="no"]:after {
+li[completed="no"]:after {
 	content: " : NO";
 }

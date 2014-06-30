@@ -27,9 +27,7 @@
 		function getStorageArr(storageName) {
 			var todoArr = JSON.parse(localStorage.getItem(storageName));
 			
-			if (todoArr === undefined || todoArr === null)
-				todoArr = [];
-			return todoArr;
+			return todoArr || [];
 		}
 		
 		function setStorageArr(storageName, arr) {
@@ -81,9 +79,22 @@
 		
 		function createTodoHtmlList(storageName) {
 			var todoArr = getStorageArr(storageName);
+			
+			//underscope create todos
+			var closeButton = '<span class="close">Close</span>';
+			var completedButton = '<span class="completedButton">Completed</span>';
+			var todoText = '<div class="todo_text"><%=element.text %></div>';
+			var templFunc = '<% _.each(arr, function(element, index) {%>';
+			var templFuncEnd = '<% console.log(element.text); }); %>';
+			var list = templFunc + '<li class="todos" todoIndex="<%=index %>" completed="<%=element.completed %>">' + todoText + closeButton + completedButton + '</li>' + templFuncEnd;
+			var template = _.template(list);
+			var html = template({arr : todoArr});
+			
+			/*
+			//jQuery create todos
 			var $todo = $([]);
 			
-			for (var i in todoArr) {
+			for (var i = 0; i < todoArr.length; i++) {
 				var text = todoArr[i].text;
 				if (text === "")
 					text = "Empty todo.";
@@ -96,7 +107,7 @@
 				var $completedButton = $("<span />", {
 					'class' : "completedButton",
 				}).text("Completed");
-				var $tmpTodo = $("<div />", {
+				var $tmpTodo = $("<li />", {
 					'class' : "todos",
 					'todoIndex' : i,
 					'completed' : todoArr[i].completed
@@ -109,6 +120,9 @@
 			}
 			
 			return $todo;
+			*/
+			
+			return html;
 		}
 		
 		//on close
@@ -138,10 +152,14 @@
 			});
 		}
 		
-		//on enter
-		$("#enter").click(function(event) {
+		function addTodo() {
 			addTodoToStorage("#textEditor", 'todos');
 			display('todos');
+		}
+		
+		//on enter
+		$("#enter").click(function(event) {
+			addTodo();
 
 			event.stopImmediatePropagation();
 			return false;
@@ -170,6 +188,12 @@
 
 			event.stopImmediatePropagation();
 			return false;
+		});
+		
+		$('#textEditor').bind('keypress', function(e) {
+			if (e.keyCode === 13) {
+				addTodo();
+			}
 		});
 		
 		//display on load
