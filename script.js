@@ -89,7 +89,7 @@
 					text = "Empty todo.";
 				var $todoText = $("<div />", {
 					'class' : "todo_text",
-				}).text(todoArr[i].text);
+				}).text(text);
 				var $closeButton = $("<span />", {
 					'class' : "close",
 				}).text("Close");
