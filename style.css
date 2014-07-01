@@ -133,3 +133,8 @@ li[completed="no"] {
 li[completed="no"]:after {
 	content: " : NO";
 }
+
+.activeTab {
+	background-color : red;
+	font-size : 25px;
+}

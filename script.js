@@ -34,6 +34,10 @@
 			localStorage.setItem(storageName, JSON.stringify(arr));
 		}
 		
+		function clearAll(storageName) {
+			localStorage.setItem(storageName, JSON.stringify([]));
+		}
+		
 		function delTodo(storageName, index) {
 			var todoArr = getStorageArr(storageName);
 			
@@ -229,7 +233,14 @@
 		}
 		
 		//status buttons
+		function activeButtonStyle(elem) {
+			$('.navButton').removeClass('activeTab');
+			$(elem).addClass('activeTab');
+		}
+		
 		$("#allButton").click(function(event) {
+			activeButtonStyle(event.currentTarget);
+			
 			nowDisplayTab = "all";
 			show[nowDisplayTab]();
 			
@@ -238,6 +249,8 @@
 		});
 		
 		$("#activeButton").click(function(event) {
+			activeButtonStyle(event.currentTarget);
+		
 			nowDisplayTab = "notCompleted";
 			show[nowDisplayTab]();
 
@@ -246,7 +259,19 @@
 		});
 		
 		$("#completedButton").click(function(event) {
+			activeButtonStyle(event.currentTarget);
+			
 			nowDisplayTab = "completed";
+			show[nowDisplayTab]();
+
+			event.stopImmediatePropagation();
+			return false;
+		});
+		
+		$("#clearAllButton").click(function(event) {
+			clearAll('todos');
+			display('todos');
+			nowDisplayTab = "all";
 			show[nowDisplayTab]();
 
 			event.stopImmediatePropagation();
@@ -256,6 +281,7 @@
 		//on load
 		setEnterEvent("#enter", '.mainTextEditor', addTodo);
 		display('todos');
+		$("#allButton").click();
 		
 	});
 })(jQuery);
