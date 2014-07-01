@@ -9,7 +9,7 @@ body {
 	max-width:500px;
 }
 
-#textEditor {
+.textEditor, .mainTextEditor {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,15 +23,15 @@ body {
 	border: 2px white solid;
 }
 
-#enter {
+.enter, #enter {
 	margin: 0px auto;
 	cursor: pointer;
-	font-size: 40px;
+	font-size: 15px;
 	background-color: rgb(255,183,116);
 	border: 4px rgb(255,99,85) solid;
 }
 
-#enter:hover {
+.enter:hover, #enter:hover {
 	background-color:black;
 	color:white;
 }
@@ -40,6 +40,19 @@ body {
 	cursor: pointer;
 	background-color:black !important;
 	color:white !important;
+}
+
+.editButton {
+	cursor: pointer;
+	background-color: green;
+	margin:2px;
+	border: 2px white solid;
+	color: white;
+}
+
+.editButton:hover{
+	background-color:black;
+	color:white;
 }
 
 #allButton {

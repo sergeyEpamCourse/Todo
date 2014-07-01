@@ -26,7 +26,7 @@
 		//storage operation
 		function getStorageArr(storageName) {
 			var todoArr = JSON.parse(localStorage.getItem(storageName));
-			
+
 			return todoArr || [];
 		}
 		
@@ -43,10 +43,21 @@
 		
 		function addTodoToStorage(inputTextArea, storageName) {
 			var todoArr = getStorageArr(storageName);
-			var text = $(inputTextArea).val();
-			var newTodo = new Todo(text);
 			
-			todoArr.unshift(newTodo);
+			$(inputTextArea).each(function() {
+				var todoText = $(this).val();
+				var newTodo = new Todo(todoText);
+				todoArr.unshift(newTodo);
+			});
+			
+			setStorageArr(storageName, todoArr);
+		}
+
+		function addEditedTodoToStorage(inputTextArea, storageName) {
+			var todoArr = getStorageArr(storageName);
+			var newText = $(inputTextArea).val();
+			var index = getTodoIndex(inputTextArea);
+			todoArr[index].text = newText;
 			setStorageArr(storageName, todoArr);
 		}
 		
@@ -59,11 +70,17 @@
 			setStorageArr(storageName, todoArr);
 		}
 		
+		var editTodo = function(textEditor) {
+			addEditedTodoToStorage(textEditor, 'todos');
+			display('todos');
+		}
+		
 		//on display
 		function display(storageName) {
 			displayTodoList("#todo_list", storageName);
 			setCloseEvent(storageName, ".close");
 			setCompletedButtonEvent(storageName, ".completedButton");
+			setEditButtonEvent(storageName, ".editButton");
 			show[nowDisplayTab]();
 		}
 		
@@ -77,16 +94,40 @@
 			$appendElem.append(createTodoHtmlList(storageName));
 		}
 		
+		function editTodoForm(index) {
+			var $todoElem = $('li[todoIndex="' + index + '"] > .todo_text');
+			var todoText = $todoElem.text();
+			
+			var $todoEdit = $("<input type=\"text\" />").val(todoText);
+			
+			var $enterButton = $("<div class=\"enter\"><span class=\"enterName\">Enter</span></div>");
+			
+			$todoEdit.addClass("textEditor");
+			$todoEdit.css({
+				'width' : '100%',
+				'display' : 'block'
+			});
+			
+			$todoEdit = $todoEdit.add($enterButton);
+			$todoElem.replaceWith($todoEdit);
+			setEnterEvent(".enter", '.textEditor', editTodo);
+		}
+		
+		function getTodoText(index) {
+			return getStorageArr(storageName)[index].text;
+		}
+		
 		function createTodoHtmlList(storageName) {
 			var todoArr = getStorageArr(storageName);
 			
 			//underscope create todos
 			var closeButton = '<span class="close">Close</span>';
 			var completedButton = '<span class="completedButton">Completed</span>';
+			var editButton = '<span class="editButton">Edit</span>';
 			var todoText = '<div class="todo_text"><%=element.text %></div>';
 			var templFunc = '<% _.each(arr, function(element, index) {%>';
-			var templFuncEnd = '<% console.log(element.text); }); %>';
-			var list = templFunc + '<li class="todos" todoIndex="<%=index %>" completed="<%=element.completed %>">' + todoText + closeButton + completedButton + '</li>' + templFuncEnd;
+			var templFuncEnd = '<% }); %>';
+			var list = templFunc + '<li class="todos" todoIndex="<%=index %>" completed="<%=element.completed %>">' + todoText + closeButton + editButton + completedButton + '</li>' + templFuncEnd;
 			var template = _.template(list);
 			var html = template({arr : todoArr});
 			
@@ -152,18 +193,40 @@
 			});
 		}
 		
-		function addTodo() {
-			addTodoToStorage("#textEditor", 'todos');
+		var editButtonState = false;
+		function setEditButtonEvent(storageName, elementGroup) {
+			$(elementGroup).click(function(event) {
+				var that = event.currentTarget;
+				var index = getTodoIndex(that);
+				
+				display('todos');
+				editTodoForm(index);
+				
+				event.stopImmediatePropagation();
+				return false;
+			});
+		}
+		
+		var addTodo = function(textEditor) {
+			addTodoToStorage(textEditor, 'todos');
 			display('todos');
 		}
 		
 		//on enter
-		$("#enter").click(function(event) {
-			addTodo();
-
-			event.stopImmediatePropagation();
-			return false;
-		});
+		function setEnterEvent(enterButton, enterField, func) {
+			$(enterButton).click(function(event) {
+				func(enterField);
+				
+				event.stopImmediatePropagation();
+				return false;
+			});
+			
+			$(enterField).bind('keypress', function(e) {
+				if (e.keyCode === 13) {
+					func(enterField);
+				}
+			});
+		}
 		
 		//status buttons
 		$("#allButton").click(function(event) {
@@ -190,13 +253,8 @@
 			return false;
 		});
 		
-		$('#textEditor').bind('keypress', function(e) {
-			if (e.keyCode === 13) {
-				addTodo();
-			}
-		});
-		
-		//display on load
+		//on load
+		setEnterEvent("#enter", '.mainTextEditor', addTodo);
 		display('todos');
 		
 	});
