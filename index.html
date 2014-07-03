@@ -2,6 +2,7 @@
 <html>
 
   <head>
+	<title>Main</title>
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 	<script src="underscore-min.js"></script>
@@ -9,10 +10,17 @@
   </head>
 
   <body>
+	<div class="links">
+		<div id="navLinks">
+			<a class="link" href="index.html">Main</a>
+			<a class="link" href="login.html">Login</a>
+			<a class="link" href="registration.html">Registration</a>
+		</div>
+	</div>
 	<div id="todoApp">
 		<div id="add_todo">
 			<div class="todo_content">
-				<input type="text" class="mainTextEditor" style="width:100%;" autofocus value="Enter text here."/>
+				<input type="text" class="mainTextEditor" style="width:100%;" autofocus placeholder="Enter text here."/>
 
 				<div id="enter">
 					<span id="enterName">Enter</span>

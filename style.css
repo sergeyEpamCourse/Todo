@@ -1,18 +1,35 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: grey;
+	background-color: rgb(171,79,34);
+}
+
+#login, #password, inpute {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.link {
+	margin: 0;
+	padding: 0;
+	border:0;
+	color: white;
+	background: rgb(39,163,22);
 }
 
 #todoApp {
 	margin: 0 auto;
 	max-width:500px;
+	box-shadow: 0 0 10px 10px rgba(0,0,0,0.5);
 }
 
 .textEditor, .mainTextEditor {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	background-color:white;
+	min-height: 25px;
 }
 
 #statusButton {
@@ -21,14 +38,33 @@ body {
 
 #statusButton  > span {
 	border: 2px white solid;
+	padding-right:60px;
 }
 
 .enter, #enter {
-	margin: 0px auto;
+	color: white;
 	cursor: pointer;
 	font-size: 15px;
-	background-color: rgb(255,183,116);
-	border: 4px rgb(255,99,85) solid;
+	background-color: rgb(111,255,103);
+	border: 2px rgb(255,255,255) solid;
+	box-shadow: 2px 2px 30px #40310a, inset 2px 2px 55px #40310a;
+	padding: 3px;
+}
+
+li {
+	color: white;
+}
+
+li *{
+	color: black;
+}
+
+#enterName, .enterName, #regButton, #loginButton {
+	color:white;
+	margin:0 auto;
+	text-align: center;
+	text-shadow: black 1px 1px 2px, red 0 0 1em;
+	font-weight: bold;
 }
 
 .enter:hover, #enter:hover {
@@ -123,6 +159,7 @@ li[completed="yes"] {
 }
 
 li[completed="yes"]:after {
+	color: black;
 	content: " : YES";
 }
 
@@ -131,10 +168,15 @@ li[completed="no"] {
 }
 
 li[completed="no"]:after {
+	color: black;
 	content: " : NO";
 }
 
 .activeTab {
 	background-color : red;
 	font-size : 25px;
+}
+
+#clearAllButton {
+	background-color : rgb(213,223,118);
 }
